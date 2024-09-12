@@ -1,14 +1,16 @@
 "use strict";
 
-const result = fetch("https://dummyjson.com/products/"); // контейнер в который придет ответ
-console.log(result); // fetch возвращает промис
+// const result = fetch("https://dummyjson.com/products/"); // контейнер в который придет ответ
+// console.log(result); // fetch возвращает промис
 
-// fetch("https://dummyjson.com/products/1").then((response) => {
-//   console.log(response);  // Promise {<pending>}
-//   return response.json();
-// }).then((data) => {
-//     console.log(data);
-// })
+// fetch("https://dummyjson.com/products")
+//   .then((response) => {
+//     console.log(response); // Promise {<pending>}
+//     return response.json("error");
+//   })
+//   .then(({ products }) => {
+//     console.log(products);
+//   });
 
 // fetch("https://dummyjson.com/products")
 //   .then((response) => response.json())
@@ -42,3 +44,24 @@ function getCategories() {
 }
 
 getCategories();
+
+function getData(url, errorMessage, method = "GET") {
+  return fetch(url, { method }).then((response) => {
+    if (!response.ok) {
+      throw new Error(`${errorMessage} (${response.status})`);
+    }
+    return response.json();
+  });
+}
+
+const URL = "https://dummyjson.com/products";
+getData(URL, "Can't get data")
+  .then(({ products }) => {
+    console.log(products);
+    return getData(`${URL}/` + products[0].id, "Can't get product");
+  })
+  .then((data) => console.log(data))
+  .catch((error) => {
+    const el = document.getElementById("output");
+    el.innerHTML = error.message;
+  });
