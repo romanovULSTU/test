@@ -38,20 +38,37 @@ function getPosition() {
   });
 }
 
-async function getLocation() {
-  try {
-    const { latitude, longitude } = await getPosition();
-    const response = await fetch(
-      `https://api-bdc.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=ru`
-    );
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
-    const data = await response.json();
-    console.log(data);
-  } catch (e) {
-    console.error(e);
+// async function getLocation() {
+//   try {
+//     const { latitude, longitude } = await getPosition();
+//     const response = await fetch(
+//       `https://api-bdc.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=ru`
+//     );
+//     if (!response.ok) {
+//       throw new Error(response.status);
+//     }
+//     const data = await response.json();
+//     console.log(data);
+//   } catch (e) {
+//     console.error(e);
+//   }
+// }
+
+// getLocation();
+
+class ProductRepository {
+  async getProducts() {
+    // Асинхронный метод
+    const response = await fetch("https://dummyjson.com/products");
+    console.log(await response.json());
   }
 }
 
-getLocation();
+const repo = new ProductRepository();
+repo.getProducts();
+
+const asyncArrow = async () => {
+  const response = await fetch("https://dummyjson.com/products");
+  console.log(await response.json());
+};
+asyncArrow();
