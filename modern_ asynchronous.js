@@ -60,7 +60,7 @@ class ProductRepository {
   async getProducts() {
     // Асинхронный метод
     const response = await fetch("https://dummyjson.com/products");
-    console.log(await response.json());
+    await response.json();
   }
 }
 
@@ -68,7 +68,26 @@ const repo = new ProductRepository();
 repo.getProducts();
 
 const asyncArrow = async () => {
-  const response = await fetch("https://dummyjson.com/products");
-  console.log(await response.json());
+  try {
+    const response = await fetch("https://dummyjson.com/products");
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
 };
-asyncArrow();
+
+// asyncArrow()
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((e) => console.log(e))
+//   .finally(() => console.log("2")); // ПЛОХО
+
+(async () => {
+  console.log("1");
+  const res = await asyncArrow();
+  console.log(res);
+  console.log("2");
+})();
