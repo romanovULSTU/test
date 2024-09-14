@@ -16,11 +16,11 @@
 // }
 
 // async function main() {
-//   // const res1 = await Promise.all([getProduct(1), getProduct(2)]);
-//   // console.log(res1);
+// const res1 = await Promise.all([getProduct(1), getProduct(2)]);
+// console.log(res1);
 
-//   // const res2 = await Promise.allSettled([getProduct(1), getProductError(2)]);
-//   // console.log(res2);
+// const res2 = await Promise.allSettled([getProduct(1), getProductError(2)]);
+// console.log(res2);
 
 //   const res3 = await Promise.any([
 //     getProduct(1),

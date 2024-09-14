@@ -3,22 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Document</title>
-    <style>
-      html,
-      body {
-        width: 100%;
-        height: 100vh;
-        margin: 0 auto;
-      }
-      .container {
-        margin: 2em auto;
-        padding: 0 40px;
-      }
-      ol li {
-        font-size: 16px;
-      }
-    </style>
   </head>
   <body>
     <div class="container">
@@ -50,9 +36,17 @@
       </ol>
     </div>
 
-    <div id="output"></div>
+    <div id="twentyone">
+      <div class="wrapper">
+        <button class="button-shaffle" type="button">Тасовать колоду</button>
+        <p class="status">Loading...</p>
+        <p class="deck_id"></p>
+        <button class="sit" type="button">Сесть за стол</button>
+        <div class="board"></div>
+      </div>
+    </div>
   </body>
-  <script src="./parallel_execution.js"></script>
+  <script src="./activity.js"></script>
 </html>
 
 <!-- ✅ ❌ -->
