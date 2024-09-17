@@ -3,8 +3,9 @@
 const buttonShuffle = document.querySelector('.button-shaffle');
 const buttonSit = document.querySelector('.sit');
 
-buttonSit.addEventListener('click', getCard());
-buttonShuffle.addEventListener('click', generateColoda());
+buttonShuffle.addEventListener('click', () => {
+  generateColoda();
+});
 
 async function generateColoda() {
   const status = document.querySelector('.status');
@@ -25,7 +26,6 @@ async function generateColoda() {
 
   buttonShuffle.style.display = 'none';
   buttonSit.style.display = 'block';
-
   return data;
 }
 
@@ -38,20 +38,24 @@ async function getCard() {
   );
   const { cards } = await response.json();
   console.log(cards);
-  buttonSit.addEventListener('click', () => {
-    buttonSit.style.display = 'none';
 
-    let placeHTML = ``;
+  let placeHTML = ``;
 
-    cards.forEach((card) => {
-      placeHTML += `<img src="${card.image}" alt="${card.code}">`;
-    });
-    board.innerHTML = `<div class="place">${placeHTML}<p class="value"></p></div>`;
+  const value = cards.reduce(
+    (acc, card) => (acc += changeValue(card.value)),
+    0
+  );
+  console.log(value);
+  cards.forEach((card) => {
+    placeHTML += `<img src="${card.image}" alt="${card.code}">`;
   });
+  board.innerHTML = `<div class="place">${placeHTML}<p class="value">${value}</p></div>`;
+  buttonSit.style.display = 'none';
+  buttonSit.removeEventListener('click', getCard);
 }
 
-function changeValue(card) {
-  switch (card) {
+function changeValue(value) {
+  switch (value) {
     case 'JACK':
       return 10;
     case 'QUEEN':
@@ -61,6 +65,6 @@ function changeValue(card) {
     case 'ACE':
       return 11;
     default:
-      return card;
+      return Number(value);
   }
 }
