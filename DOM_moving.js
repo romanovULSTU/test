@@ -22,3 +22,19 @@ console.log(button.nextElementSibling); // ближайший ПОСЛЕ эле�
 console.log(button.nextSibling);
 
 console.log(button.parentElement.children[2]); // получение 3ей кнопки на уровне
+
+document.addEventListener('DOMContentLoaded', function (e) {
+  console.log('DOMContentLoaded');
+  console.log(e);
+});
+
+window.addEventListener('load', function (e) {
+  console.log('load');
+  console.log(e);
+});
+
+window.addEventListener('beforeunload', function (e) {
+  e.preventDefault();
+  console.log('beforeunload');
+  console.log(e);
+});

@@ -3,10 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./search.js" defer></script>
     <link rel="stylesheet" href="./css/style.css" />
     <title>Document</title>
   </head>
   <body>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+      (function (m, e, t, r, i, k, a) {
+        m[i] =
+          m[i] ||
+          function () {
+            (m[i].a = m[i].a || []).push(arguments);
+          };
+        m[i].l = 1 * new Date();
+        for (var j = 0; j < document.scripts.length; j++) {
+          if (document.scripts[j].src === r) {
+            return;
+          }
+        }
+        (k = e.createElement(t)),
+          (a = e.getElementsByTagName(t)[0]),
+          (k.async = 1),
+          (k.src = r),
+          a.parentNode.insertBefore(k, a);
+      })(
+        window,
+        document,
+        'script',
+        'https://mc.yandex.ru/metrika/tag.js',
+        'ym'
+      );
+
+      ym(98392083, 'init', {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+      });
+    </script>
+    <noscript
+      ><div>
+        <img
+          src="https://mc.yandex.ru/watch/98392083"
+          style="position: absolute; left: -9999px"
+          alt=""
+        /></div
+    ></noscript>
+    <!-- /Yandex.Metrika counter -->
     <div class="container">
       <h2>JavaScript Advanced</h2>
       <ol>
@@ -32,17 +75,15 @@
           запросов)✅
         </li>
         <li>EventLoop(Упражнение - создание fetch)✅</li>
-        <li>Современный асинхронный JavaScript❌</li>
+        <li>Современный асинхронный JavaScript✅</li>
+
+        <li>Продвинутый DOM и Events❌</li>
       </ol>
     </div>
 
+    <input class="search" type="search" onchange="search(event)" />
     <div id="twentyone" class="twentyone">
-      <div class="inner">
-        <button class="button">First</button>
-        <button class="button">Second</button>
-        <button class="button">Third</button>
-      </div>
-      <div class="wrapper">
+      <!-- <div class="wrapper">
         <button class="button-shaffle" onclick="getCard()" type="button">
           Тасовать колоду
         </button>
@@ -52,10 +93,9 @@
           Сесть за стол
         </button>
         <div class="board"></div>
-      </div>
+      </div> -->
     </div>
   </body>
-  <script src="./DOM_moving.js"></script>
 </html>
 
 <!-- ✅ ❌ -->
